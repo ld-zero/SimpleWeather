@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <!-- toolbar title -->
+        <variable
+            name="toolbarTitle"
+            type="String"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="ldzero.ai.simpleweather.MainActivity">
+
+        <include
+            android:id="@+id/toolbar_layout"
+            layout="@layout/app_toolbar"
+            app:title="@{toolbarTitle}"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>
