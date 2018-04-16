@@ -3,7 +3,10 @@ package ldzero.ai.simpleweather;
 import android.app.Application;
 
 import ldzero.ai.simpleweather.constant.ApiConstant;
+import ldzero.ai.simpleweather.db.AppDatabase;
 import ldzero.ai.simpleweather.http.ApiAgent;
+import ldzero.ai.simpleweather.repository.DataRepository;
+import ldzero.ai.simpleweather.utils.AppExecutors;
 
 /**
  * application subclass of simple weather app
@@ -35,5 +38,23 @@ public class WeatherApp extends Application {
      */
     private void initHttpApi() {
         ApiAgent.getInstance().init(-1);
+    }
+
+    /**
+     * get reference of app database
+     *
+     * @return reference of app database
+     */
+    private AppDatabase getDatabase() {
+        return AppDatabase.getInstance(this, new AppExecutors());
+    }
+
+    /**
+     * get reference of data repository
+     *
+     * @return reference of data repository
+     */
+    public DataRepository getDataRepository() {
+        return DataRepository.getInstance(getDatabase());
     }
 }

@@ -14,9 +14,9 @@ import java.util.List;
 public class NowWeatherResponse {
 
     @SerializedName("results")
-    List<NowWeatherResponseMember> mResults;
+    public List<NowWeatherResponseMember> mResults;
 
-    public class NowWeatherResponseMember {
+    public static class NowWeatherResponseMember {
 
         @SerializedName("location")
         public WeatherLocation mLocation;
