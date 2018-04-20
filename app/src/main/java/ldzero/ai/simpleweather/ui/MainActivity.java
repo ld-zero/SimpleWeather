@@ -2,11 +2,7 @@ package ldzero.ai.simpleweather.ui;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
-import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 
 import ldzero.ai.simpleweather.R;
@@ -57,21 +53,6 @@ public class MainActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.weather_container, WeatherFragment.newInstance(), WeatherFragment.TAG)
                 .commit();
-    }
-
-    @Override
-    protected int getMenuId() {
-        return R.menu.menu_main;
-    }
-
-    @Override
-    protected boolean optionsItemSel(int itemId) {
-        if (itemId == R.id.action_settings) {
-            // TODO: open setting activity
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
