@@ -16,7 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (getMenuId() > 0) {
+        if (getMenuId() != 0) {
             // if subclass returns a menu id greater then 0, think subclass has menu, will inflate it.
             getMenuInflater().inflate(getMenuId(), menu);
             return true;

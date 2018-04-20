@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import ldzero.ai.simpleweather.db.migration.AppMigration_1_2;
 import ldzero.ai.simpleweather.utils.AppExecutors;
 import ldzero.ai.simpleweather.db.dao.NowWeatherDao;
 import ldzero.ai.simpleweather.db.entity.NowWeatherEntity;
@@ -16,7 +17,7 @@ import ldzero.ai.simpleweather.db.entity.NowWeatherEntity;
  * @author ldzero
  */
 
-@Database(entities = {NowWeatherEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {NowWeatherEntity.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase sInstance;
@@ -29,6 +30,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (sInstance == null) {
                     sInstance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, DB_NAME)
+                            .addMigrations(new AppMigration_1_2())
                             .allowMainThreadQueries()
                             .build();
                 }

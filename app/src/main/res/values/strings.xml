@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">SimpleWeather</string>
     <string name="action_settings">Settings</string>
+
+    <!-- common -->
+
+    <!-- now weather -->
+    <string name="temp_data">%1$d℃</string>
+    <string name="update_time">更新时间 %1$s</string>
+
 </resources>

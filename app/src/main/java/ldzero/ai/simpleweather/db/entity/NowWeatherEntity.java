@@ -45,7 +45,11 @@ public class NowWeatherEntity implements NowWeather {
 
     private int temperature;
 
+    /* last update time of weather data */
     private long lastUpdateTime;
+
+    /* last update time of db data */
+    private long lastUpdateDbTime;
 
     public int getId() {
         return id;
@@ -81,6 +85,11 @@ public class NowWeatherEntity implements NowWeather {
         return lastUpdateTime;
     }
 
+    @Override
+    public long getLastUpdateDbTime() {
+        return lastUpdateDbTime;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -107,5 +116,9 @@ public class NowWeatherEntity implements NowWeather {
 
     public void setLastUpdateTime(long lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public void setLastUpdateDbTime(long lastUpdateDbTime) {
+        this.lastUpdateDbTime = lastUpdateDbTime;
     }
 }

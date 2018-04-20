@@ -2,25 +2,41 @@
 <layout>
 
     <data>
+        <import type="ldzero.ai.simpleweather.R"/>
         <!-- toolbar title -->
         <variable
             name="toolbarTitle"
             type="String"/>
+        <!-- toolbar title text color -->
+        <variable
+            name="toolbarTitleColor"
+            type="Integer"/>
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="ldzero.ai.simpleweather.MainActivity">
+        tools:context="ldzero.ai.simpleweather.ui.MainActivity">
+
+        <FrameLayout
+            android:id="@+id/weather_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <include
             android:id="@+id/toolbar_layout"
             layout="@layout/app_toolbar"
-            app:title="@{toolbarTitle}"/>
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_marginTop="@dimen/status_bar_size"
+            app:title="@{toolbarTitle}"
+            app:titleColor="@{toolbarTitleColor}"
+            app:bgColor="@{@android:color/transparent}"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

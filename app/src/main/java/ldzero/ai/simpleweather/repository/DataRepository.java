@@ -3,14 +3,12 @@ package ldzero.ai.simpleweather.repository;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Locale;
 
+import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import ldzero.ai.simpleweather.db.AppDatabase;
 import ldzero.ai.simpleweather.db.entity.NowWeatherEntity;
@@ -59,8 +57,8 @@ public class DataRepository {
                 fetchNowWeatherFromNetwork();
                 mObservableNowWeather.postValue(null);
             } else {
-                if (nowWeatherEntities.get(0).getLastUpdateTime() < 0 ||
-                        (System.currentTimeMillis() - nowWeatherEntities.get(0).getLastUpdateTime()) > mFetchNewDataInterval) {
+                if (nowWeatherEntities.get(0).getLastUpdateDbTime() < 0 ||
+                        (System.currentTimeMillis() - nowWeatherEntities.get(0).getLastUpdateDbTime()) > mFetchNewDataInterval) {
                     fetchNowWeatherFromNetwork();
                 }
                 mObservableNowWeather.postValue(nowWeatherEntities.get(0));
@@ -77,7 +75,7 @@ public class DataRepository {
         ApiAgent.getInstance().getSeniverseApi()
                 .getNowWeather("ip", "zh-Hans", "c")
                 .compose(RxUtils.io2main())
-                .subscribe(new io.reactivex.Observer<NowWeatherResponse>() {
+                .subscribe(new Observer<NowWeatherResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
@@ -95,6 +93,7 @@ public class DataRepository {
                         nowWeatherEntity.setUnit("c");
                         nowWeatherEntity.setWeatherCode(Integer.parseInt(responseMember.mWeather.mWeatherCode));
                         nowWeatherEntity.setWeatherText(responseMember.mWeather.mWeatherText);
+                        nowWeatherEntity.setLastUpdateDbTime(System.currentTimeMillis());
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault());
                         try {
                             nowWeatherEntity.setLastUpdateTime(format.parse(responseMember.mLastUpdate).getTime());

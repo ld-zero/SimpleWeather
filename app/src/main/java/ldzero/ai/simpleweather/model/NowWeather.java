@@ -20,4 +20,6 @@ public interface NowWeather {
     int getTemperature();
 
     long getLastUpdateTime();
+
+    long getLastUpdateDbTime();
 }
