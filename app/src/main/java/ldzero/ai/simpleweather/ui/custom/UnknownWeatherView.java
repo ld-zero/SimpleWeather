@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Random;
 
 import ldzero.ai.simpleweather.R;
-import ldzero.ai.simpleweather.utils.AppUtils;
-import ldzero.ai.simpleweather.utils.ViewUtils;
 
 /**
  * unknown weather effect view
@@ -38,7 +36,7 @@ public class UnknownWeatherView extends BaseWeatherView {
     /* the number of circles in the animation, default value is 10 */
     private int mCircleCnt = 5;
 
-    /* interval of refresh circles info and invalidate, unit is ms, default value is 60ms */
+    /* interval of refresh circles info and invalidate, unit is ms, default value is 30ms */
     private int mRefreshInterval = 30;
 
     /* random object, used to generate the axis of circle center */
@@ -99,13 +97,6 @@ public class UnknownWeatherView extends BaseWeatherView {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = ViewUtils.handleMeasure(widthMeasureSpec, AppUtils.getScreenWidth(getContext()));
-        int height = ViewUtils.handleMeasure(heightMeasureSpec, AppUtils.getScreenHeight(getContext()));
-        setMeasuredDimension(width, height);
-    }
-
-    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawBg(canvas);
@@ -148,7 +139,7 @@ public class UnknownWeatherView extends BaseWeatherView {
 
         private static final int MSG_REFRESH_VIEW = 0x300;
 
-        public ViewHandler(UnknownWeatherView view) {
+        private ViewHandler(UnknownWeatherView view) {
             super(Looper.getMainLooper());
             mViewWeakReference = new WeakReference<>(view);
         }

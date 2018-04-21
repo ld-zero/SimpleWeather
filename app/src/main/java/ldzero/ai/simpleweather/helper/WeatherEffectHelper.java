@@ -5,8 +5,11 @@ import android.support.annotation.ColorRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 
+import java.util.Calendar;
+
 import ldzero.ai.simpleweather.R;
 import ldzero.ai.simpleweather.model.NowWeather;
+import ldzero.ai.simpleweather.ui.weather_effect_fragment.SunnyFragment;
 import ldzero.ai.simpleweather.ui.weather_effect_fragment.UnknownWeatherFragment;
 
 /**
@@ -24,7 +27,18 @@ public class WeatherEffectHelper {
      * @return corresponding fragment
      */
     public static Fragment getWeatherEffectFragment(NowWeather nowWeather) {
+        // determine if the weather time is daytime
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(nowWeather.getLastUpdateTime());
+        int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+        boolean isDaytime = hourOfDay >= 6 && hourOfDay <= 18;
+        // get the corresponding fragment
         switch (nowWeather.getWeatherCode()) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return SunnyFragment.newInstance(isDaytime);
             default:
                 return UnknownWeatherFragment.newInstance();
         }

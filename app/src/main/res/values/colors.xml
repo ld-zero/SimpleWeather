@@ -16,5 +16,8 @@
     <!-- unknown weather view -->
     <color name="colorUnknownWeatherBg">#3B3B3B</color>
     <color name="colorUnknownCircle">@color/colorWhite</color>
+    <!-- sunny view -->
+    <color name="colorSunnySky">#87CEEB</color>
+    <color name="colorSun">#FFD700</color>
 
 </resources>
