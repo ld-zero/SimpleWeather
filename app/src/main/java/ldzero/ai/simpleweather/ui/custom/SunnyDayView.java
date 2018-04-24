@@ -20,7 +20,7 @@ import ldzero.ai.simpleweather.R;
 import ldzero.ai.simpleweather.utils.ViewUtils;
 
 /**
- * sunny weather effect view
+ * sunny weather daytime effect view
  * Created on 2018/4/21.
  *
  * @author ldzero
@@ -129,7 +129,7 @@ public class SunnyDayView extends View {
      * @param canvas canvas
      */
     private void drawSky(Canvas canvas) {
-        canvas.drawColor(ContextCompat.getColor(getContext(), R.color.colorSunnySky));
+        canvas.drawColor(ContextCompat.getColor(getContext(), R.color.colorSunnyDaySky));
     }
 
     /**

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import ldzero.ai.simpleweather.R;
 import ldzero.ai.simpleweather.databinding.SunnyDayBinding;
+import ldzero.ai.simpleweather.databinding.SunnyNightBinding;
 
 /**
  * a fragment containing the sunny weather effect view
@@ -24,6 +25,8 @@ public class SunnyFragment extends Fragment {
     private boolean mIsDaytime = true;
 
     private SunnyDayBinding mDayBinding;
+
+    private SunnyNightBinding mNightBinding;
 
     /**
      * get sunny fragment instance
@@ -54,8 +57,8 @@ public class SunnyFragment extends Fragment {
             mDayBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sunny_day, container, false);
             return mDayBinding.getRoot();
         } else {
-            mDayBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sunny_day, container, false);
-            return mDayBinding.getRoot();
+            mNightBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sunny_night, container, false);
+            return mNightBinding.getRoot();
         }
     }
 }

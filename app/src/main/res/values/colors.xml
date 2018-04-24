@@ -17,7 +17,10 @@
     <color name="colorUnknownWeatherBg">#3B3B3B</color>
     <color name="colorUnknownCircle">@color/colorWhite</color>
     <!-- sunny view -->
-    <color name="colorSunnySky">#87CEEB</color>
+    <color name="colorSunnyDaySky">#87CEEB</color>
     <color name="colorSun">#FFD700</color>
+    <color name="colorSunnyEveningSky">#191970</color>
+    <color name="colorMoon">#FFFFE0</color>
+    <color name="colorStar">@color/colorWhite</color>
 
 </resources>
