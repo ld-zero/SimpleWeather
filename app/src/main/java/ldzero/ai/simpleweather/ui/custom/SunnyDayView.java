@@ -25,7 +25,7 @@ import ldzero.ai.simpleweather.utils.ViewUtils;
  *
  * @author ldzero
  */
-public class SunnyDayView extends View {
+public class SunnyDayView extends BaseWeatherView {
 
     /* radius of sun, unit is px, method init() will initialize sun radius with a default value of
     corresponding to the pixel value of 230dp  */

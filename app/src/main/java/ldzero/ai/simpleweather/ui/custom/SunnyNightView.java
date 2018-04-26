@@ -25,7 +25,7 @@ import ldzero.ai.simpleweather.utils.ViewUtils;
  *
  * @author ldzero
  */
-public class SunnyNightView extends View {
+public class SunnyNightView extends BaseWeatherView {
 
     /* paint of drawing moon */
     private Paint mMoonPaint;
