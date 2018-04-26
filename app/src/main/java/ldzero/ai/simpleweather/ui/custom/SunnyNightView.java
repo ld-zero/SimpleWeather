@@ -75,12 +75,12 @@ public class SunnyNightView extends View {
         addOnAttachStateChangeListener(new OnAttachStateChangeListener() {
             @Override
             public void onViewAttachedToWindow(View v) {
-                startRefreshView();
+                mHandler.sendEmptyMessageDelayed(ViewHandler.MSG_REFRESH_VIEW, mRefreshInterval);
             }
 
             @Override
             public void onViewDetachedFromWindow(View v) {
-                stopRefreshView();
+                mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
             }
         });
 
@@ -89,22 +89,6 @@ public class SunnyNightView extends View {
         mMaxLightLen = ViewUtils.dp2px(getContext(), 5);
 
         initPaints();
-    }
-
-    /**
-     * start to refresh view, expose this method to subclass
-     *
-     */
-    protected void startRefreshView() {
-        mHandler.sendEmptyMessageDelayed(ViewHandler.MSG_REFRESH_VIEW, mRefreshInterval);
-    }
-
-    /**
-     * stop refreshing view
-     *
-     */
-    protected void stopRefreshView() {
-        mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
     }
 
     private void initPaints() {
