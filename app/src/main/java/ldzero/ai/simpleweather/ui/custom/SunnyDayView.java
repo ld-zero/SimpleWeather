@@ -74,12 +74,12 @@ public class SunnyDayView extends View {
         addOnAttachStateChangeListener(new OnAttachStateChangeListener() {
             @Override
             public void onViewAttachedToWindow(View v) {
-                mHandler.sendEmptyMessageDelayed(ViewHandler.MSG_REFRESH_VIEW, mRefreshViewInterval);
+                startRefreshView();
             }
 
             @Override
             public void onViewDetachedFromWindow(View v) {
-                mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
+                stopRefreshView();
             }
         });
         mSunRadius = ViewUtils.dp2px(getContext(), 230);
@@ -90,7 +90,23 @@ public class SunnyDayView extends View {
     }
 
     /**
-     * init list of lengths of light
+     * start to refresh view, expose this method to subclass
+     *
+     */
+    protected void startRefreshView() {
+        mHandler.sendEmptyMessageDelayed(ViewHandler.MSG_REFRESH_VIEW, mRefreshViewInterval);
+    }
+
+    /**
+     * stop refreshing view
+     *
+     */
+    protected void stopRefreshView() {
+        mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
+    }
+
+    /**
+     * init list of lengths of light, expose this method to subclass
      *
      */
     private void initLightLenList() {
