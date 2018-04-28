@@ -9,6 +9,7 @@ import java.util.Calendar;
 
 import ldzero.ai.simpleweather.R;
 import ldzero.ai.simpleweather.model.NowWeather;
+import ldzero.ai.simpleweather.ui.weather_effect_fragment.CloudyFragment;
 import ldzero.ai.simpleweather.ui.weather_effect_fragment.SunnyFragment;
 import ldzero.ai.simpleweather.ui.weather_effect_fragment.UnknownWeatherFragment;
 
@@ -39,6 +40,14 @@ public class WeatherEffectHelper {
             case 2:
             case 3:
                 return SunnyFragment.newInstance(isDaytime);
+            case 4:
+                return CloudyFragment.newInstance(isDaytime, CloudyFragment.CLOUDY);
+            case 5:
+            case 6:
+                return CloudyFragment.newInstance(isDaytime, CloudyFragment.PARTLY_CLOUDY);
+            case 7:
+            case 8:
+                return CloudyFragment.newInstance(isDaytime, CloudyFragment.MOSTLY_CLOUDY);
             default:
                 return UnknownWeatherFragment.newInstance();
         }

@@ -58,6 +58,9 @@ public class SunnyNightView extends BaseWeatherView {
     /* interval of refresh stars info and invalidate, unit is ms, default value is 60ms */
     private int mRefreshInterval = 60;
 
+    /* indicates if view need to draw the moon and star */
+    private boolean mNeedToDrawMoon = true;
+
     public SunnyNightView(Context context) {
         super(context);
     }
@@ -106,8 +109,10 @@ public class SunnyNightView extends BaseWeatherView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawSky(canvas);
-        drawMoon(canvas);
-        drawStarList(canvas);
+        if (mNeedToDrawMoon) {
+            drawMoon(canvas);
+            drawStarList(canvas);
+        }
     }
 
     /**
@@ -264,5 +269,21 @@ public class SunnyNightView extends BaseWeatherView {
      */
     public void setRefreshInterval(int refreshInterval) {
         mRefreshInterval = refreshInterval;
+    }
+
+    /**
+     * whether the view need to draw the sun setting
+     *
+     * @param needToDrawMoon a flat indicating whether the view need to draw the moon and stars
+     */
+    public void setNeedToDrawMoon(boolean needToDrawMoon) {
+        mNeedToDrawMoon = needToDrawMoon;
+        if (mNeedToDrawMoon) {
+            mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
+            mHandler.sendEmptyMessageDelayed(ViewHandler.MSG_REFRESH_VIEW, mRefreshInterval);
+        } else {
+            mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
+        }
+        postInvalidate();
     }
 }

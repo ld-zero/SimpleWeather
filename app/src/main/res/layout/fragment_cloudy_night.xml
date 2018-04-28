@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="CloudyNightBinding">
+        <variable
+            name="displayMoon"
+            type="Boolean"/>
+        <variable
+            name="cloudCnt"
+            type="Integer"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ldzero.ai.simpleweather.ui.custom.SunnyNightView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:needToDrawMoon="@{displayMoon ?? true}"/>
+
+        <ldzero.ai.simpleweather.ui.custom.CloudyView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cloudCnt="@{cloudCnt ?? 10}"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

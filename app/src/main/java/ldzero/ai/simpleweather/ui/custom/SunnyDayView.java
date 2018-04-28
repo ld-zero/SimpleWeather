@@ -54,6 +54,9 @@ public class SunnyDayView extends BaseWeatherView {
     /* interval of refresh circles info and invalidate, unit is ms, default value is 60ms */
     private int mRefreshViewInterval = 60;
 
+    /* indicates if view need to draw the sun */
+    private boolean mNeedToDrawSun = true;
+
     /* view handler */
     private ViewHandler mHandler = new ViewHandler(this);
 
@@ -119,8 +122,10 @@ public class SunnyDayView extends BaseWeatherView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawSky(canvas);
-        drawSun(canvas);
-        drawLight(canvas);
+        if (mNeedToDrawSun) {
+            drawSun(canvas);
+            drawLight(canvas);
+        }
     }
 
     /**
@@ -259,5 +264,21 @@ public class SunnyDayView extends BaseWeatherView {
             mLightCnt = lightCnt;
             initLightLenList();
         }
+    }
+
+    /**
+     * whether the view need to draw the sun setting
+     *
+     * @param needToDrawSun a flat indicating whether the view need to draw the sun
+     */
+    public void setNeedToDrawSun(boolean needToDrawSun) {
+        mNeedToDrawSun = needToDrawSun;
+        if (mNeedToDrawSun) {
+            mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
+            mHandler.sendEmptyMessageDelayed(ViewHandler.MSG_REFRESH_VIEW, mRefreshViewInterval);
+        } else {
+            mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
+        }
+        postInvalidate();
     }
 }
