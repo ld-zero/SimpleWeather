@@ -22,5 +22,7 @@
     <color name="colorSunnyEveningSky">#191970</color>
     <color name="colorMoon">#FFFFE0</color>
     <color name="colorStar">@color/colorWhite</color>
+    <!-- cloud view -->
+    <color name="colorCloud">#7FFFFFFF</color>
 
 </resources>
