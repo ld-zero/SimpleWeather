@@ -204,9 +204,9 @@ public class CloudyView extends BaseWeatherView {
                 i--;
             }
         }
-        // if number of cloud less then mCloudCnt and random value less than 1, add a star
+        // if number of cloud less then mCloudCnt and random value less than 2, add a star
         // determining random numbers is to avoid generating stars too quickly
-        if (mCloudList.size() < mCloudCnt && mRandom.nextInt(100) < 3) {
+        if (mCloudList.size() < mCloudCnt && mRandom.nextInt(100) < 2) {
             mCloudList.add(createCloud());
         }
         postInvalidate();

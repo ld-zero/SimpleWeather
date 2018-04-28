@@ -23,6 +23,6 @@
     <color name="colorMoon">#FFFFE0</color>
     <color name="colorStar">@color/colorWhite</color>
     <!-- cloud view -->
-    <color name="colorCloud">#7FFFFFFF</color>
+    <color name="colorCloud">#8FFFFFFF</color>
 
 </resources>
