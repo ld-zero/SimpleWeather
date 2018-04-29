@@ -3,13 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="CloudyDayBinding">
+    <data class="SunnyBinding">
+        <import type="android.view.View"/>
         <variable
-            name="displaySun"
+            name="isDaytime"
             type="Boolean"/>
-        <variable
-            name="cloudCnt"
-            type="Integer"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -19,12 +17,12 @@
         <ldzero.ai.simpleweather.ui.custom.SunnyDayView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:needToDrawSun="@{displaySun ?? true}"/>
+            app:visibility="@{isDaytime ? View.VISIBLE : View.GONE}"/>
 
-        <ldzero.ai.simpleweather.ui.custom.CloudyView
+        <ldzero.ai.simpleweather.ui.custom.SunnyNightView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cloudCnt="@{cloudCnt ?? 10}"/>
+            app:visibility="@{isDaytime ? View.GONE : View.VISIBLE}"/>
 
     </android.support.constraint.ConstraintLayout>
 

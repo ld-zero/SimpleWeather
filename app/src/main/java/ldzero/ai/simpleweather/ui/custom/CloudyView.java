@@ -361,4 +361,13 @@ public class CloudyView extends BaseWeatherView {
     public void setCloudCurveCnt(int cloudCurveCnt) {
         mCloudCurveCnt = cloudCurveCnt;
     }
+
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(visibility);
+        mHandler.removeMessages(CloudHandler.MSG_REFRESH_CLOUD_INFO);
+        if (visibility == VISIBLE) {
+            mHandler.sendEmptyMessageDelayed(CloudHandler.MSG_REFRESH_CLOUD_INFO, mRefreshInterval);
+        }
+    }
 }

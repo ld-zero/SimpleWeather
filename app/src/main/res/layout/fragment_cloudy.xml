@@ -3,23 +3,37 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="CloudyNightBinding">
+    <data class="CloudyBinding">
+        <import type="android.view.View"/>
+        <variable
+            name="displaySun"
+            type="Boolean"/>
         <variable
             name="displayMoon"
             type="Boolean"/>
         <variable
             name="cloudCnt"
             type="Integer"/>
+        <variable
+            name="isDaytime"
+            type="Boolean"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ldzero.ai.simpleweather.ui.custom.SunnyDayView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:needToDrawSun="@{displaySun ?? true}"
+            app:visibility="@{isDaytime ? View.VISIBLE : View.GONE}"/>
+
         <ldzero.ai.simpleweather.ui.custom.SunnyNightView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:needToDrawMoon="@{displayMoon ?? true}"/>
+            app:needToDrawMoon="@{displayMoon ?? true}"
+            app:visibility="@{isDaytime ? View.GONE : View.VISIBLE}"/>
 
         <ldzero.ai.simpleweather.ui.custom.CloudyView
             android:layout_width="match_parent"

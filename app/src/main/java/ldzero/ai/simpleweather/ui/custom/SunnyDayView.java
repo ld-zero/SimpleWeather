@@ -281,4 +281,13 @@ public class SunnyDayView extends BaseWeatherView {
         }
         postInvalidate();
     }
+
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(visibility);
+        mHandler.removeMessages(ViewHandler.MSG_REFRESH_VIEW);
+        if (visibility == VISIBLE) {
+            mHandler.sendEmptyMessageDelayed(ViewHandler.MSG_REFRESH_VIEW, mRefreshViewInterval);
+        }
+    }
 }
